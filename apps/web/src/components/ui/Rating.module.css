@@ -1,0 +1,20 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--c-muted);
+}
+
+.stars {
+  color: #b8860b;
+  letter-spacing: 0.05em;
+  font-size: var(--text-base);
+}
+
+@media (prefers-color-scheme: dark) {
+  .stars {
+    color: var(--c-marking);
+  }
+}

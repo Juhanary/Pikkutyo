@@ -1,0 +1,28 @@
+.notice {
+  border-left: 4px solid var(--tone);
+  background: var(--tone-soft);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.notice > :last-child,
+.notice p:last-child,
+.notice ul:last-child {
+  margin-bottom: 0;
+}
+
+.info {
+  --tone: var(--c-primary);
+  --tone-soft: var(--c-primary-soft);
+}
+
+.success {
+  --tone: var(--c-success);
+  --tone-soft: var(--c-success-soft);
+}
+
+.error {
+  --tone: var(--c-danger);
+  --tone-soft: var(--c-danger-soft);
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@vaihdarenkaat/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./messages/*": "./messages/*"
+  },
+  "types": "./src/index.ts"
+}

@@ -1,0 +1,89 @@
+.layout {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+  align-items: start;
+}
+
+.main > section {
+  margin-bottom: var(--space-6);
+}
+
+/* Vapaat ajat pysyvät näkyvissä, kun palveluita ja arvosteluja vieritetään. */
+.aside {
+  position: sticky;
+  top: var(--space-4);
+}
+
+.description {
+  font-size: var(--text-lg);
+}
+
+.muted {
+  color: var(--c-muted);
+}
+
+.services {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+.services th,
+.services td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+}
+
+.services tbody tr + tr > * {
+  border-top: 1px solid var(--c-line);
+}
+
+.services th small,
+.services td small {
+  display: block;
+  font-weight: 400;
+}
+
+.services td {
+  color: var(--c-muted);
+  white-space: nowrap;
+}
+
+.services .price {
+  text-align: right;
+  color: var(--c-ink);
+  font-weight: 800;
+  font-size: var(--text-lg);
+}
+
+.reviews {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reviews li {
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.reviews li p {
+  margin: var(--space-2) 0 0;
+}
+
+@media (max-width: 52rem) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Mobiilissa varaus ensin: se on sivun tärkein tehtävä. */
+  .aside {
+    position: static;
+    order: -1;
+  }
+}

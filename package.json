@@ -1,0 +1,36 @@
+{
+  "name": "vaihdarenkaat",
+  "private": true,
+  "packageManager": "npm@10.9.9",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/web",
+    "packages/db-types",
+    "packages/i18n"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=@vaihdarenkaat/web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "db:link": "supabase link",
+    "db:push": "supabase db push --remote",
+    "db:seed": "supabase db reset --remote",
+    "db:test": "node --env-file=.env scripts/db-test.mjs",
+    "db:types": "supabase gen types --lang=typescript --schema public --remote > packages/db-types/src/database.ts",
+    "db:new": "supabase migration new"
+  },
+  "devDependencies": {
+    "pg": "^8.23.1",
+    "supabase": "^3.0.0",
+    "turbo": "^2.11.10"
+  },
+  "dependencies": {
+    "@supabase/server": "^1.9.2",
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.0"
+  }
+}

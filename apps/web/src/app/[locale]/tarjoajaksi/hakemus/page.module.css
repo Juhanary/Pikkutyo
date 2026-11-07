@@ -1,0 +1,98 @@
+.layout {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem);
+  align-items: start;
+}
+
+.aside {
+  position: sticky;
+  top: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.account {
+  font-size: var(--text-sm);
+  color: var(--c-muted);
+}
+
+.muted {
+  color: var(--c-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.files {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  background: var(--c-surface);
+}
+
+.files li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  overflow-wrap: anywhere;
+}
+
+.files li + li {
+  border-top: 1px solid var(--c-line);
+}
+
+/* Testioikopolut erottuvat selvästi oikeista toiminnoista. */
+.test {
+  border: 1px dashed var(--c-muted);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.test p {
+  margin-bottom: var(--space-3);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.terms {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.terms p {
+  margin: 0;
+}
+
+.check {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-weight: 600;
+}
+
+@media (max-width: 52rem) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    position: static;
+    margin-top: 0;
+  }
+}

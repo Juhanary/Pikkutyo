@@ -1,0 +1,5 @@
+.results {
+  margin-top: var(--space-6);
+  font-size: var(--text-lg);
+  font-variation-settings: "wdth" 100;
+}

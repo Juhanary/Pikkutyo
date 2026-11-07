@@ -1,0 +1,16 @@
+.header {
+  margin-bottom: var(--space-6);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  color: var(--c-muted);
+  max-width: 60ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}

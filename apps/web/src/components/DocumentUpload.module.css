@@ -1,0 +1,20 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.error {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 40rem) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .submit {
+    justify-self: start;
+  }
+}

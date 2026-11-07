@@ -1,0 +1,24 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  align-items: end;
+}
+
+.submit {
+  align-self: end;
+}
+
+/* Etusivulla lomake on suoraan asfalttikaistan päällä; kentät pysyvät vaaleina. */
+.hero {
+  color: var(--c-on-asphalt);
+  max-width: 52rem;
+}
+
+.hero select,
+.hero input {
+  background: #ffffff;
+  color: #1e252d;
+  border-color: transparent;
+  color-scheme: light;
+}

@@ -1,0 +1,27 @@
+name: db
+
+on:
+  pull_request:
+    paths:
+      - "supabase/**"
+      - ".github/workflows/db.yml"
+  push:
+    branches: [main]
+    paths:
+      - "supabase/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Paikallinen Supabase (Docker on valmiina GitHubin koneissa):
+      # migraatiot tyhjään kantaan + siemendata + pgTAP-testit.
+      - run: npx supabase db start
+      - run: npx supabase db reset
+      - run: npx supabase test db

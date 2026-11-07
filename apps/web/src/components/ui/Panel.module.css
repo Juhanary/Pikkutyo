@@ -1,0 +1,15 @@
+.panel {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+
+.raised {
+  box-shadow: var(--shadow-panel);
+  border-color: transparent;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
