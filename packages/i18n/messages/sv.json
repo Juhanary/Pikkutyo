@@ -29,7 +29,10 @@
     "language": "Språk",
     "main": "Huvudmeny",
     "signIn": "Logga in",
-    "breadcrumb": "Sökväg"
+    "breadcrumb": "Sökväg",
+    "tabs": "Snabbmeny",
+    "tabHome": "Hem",
+    "tabProvider": "Bli utförare"
   },
   "home": {
     "metaTitle": "Däckbyte nära dig – lediga tider direkt | Pikkutyö",

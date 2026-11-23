@@ -4,33 +4,63 @@ import 'package:go_router/go_router.dart';
 
 import '../../data/search_repository.dart';
 import '../../l10n/generated/app_localizations.dart';
+import '../../widgets/ui.dart';
 
-/// Omat varaukset. Lista kytketään, kun varaus ja maksu tehdään (askel 7).
-class BookingsScreen extends ConsumerWidget {
+/// Työt: asiakkaana tilatut ja tekijänä tehtävät työt. Listat kytketään, kun
+/// varaus ja maksu tehdään (askel 7).
+class BookingsScreen extends ConsumerStatefulWidget {
   const BookingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<BookingsScreen> createState() => _BookingsScreenState();
+}
+
+class _BookingsScreenState extends ConsumerState<BookingsScreen> {
+  int _tab = 0;
+
+  @override
+  Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     final signedIn = ref.watch(sessionProvider).valueOrNull != null;
     return Scaffold(
-      appBar: AppBar(title: Text(t.navBookings)),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: signedIn
-              ? Text(t.bookingsEmpty, textAlign: TextAlign.center)
-              : Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(t.bookingsSignIn, textAlign: TextAlign.center),
-                    TextButton(
-                      onPressed: () => context.go('/account'),
-                      child: Text(t.signInTitle),
-                    ),
-                  ],
-                ),
+      body: SafeArea(
+        bottom: false,
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, bottomBarClearance),
+          children: [
+            ScreenTitle(t.navJobs),
+            const SizedBox(height: 16),
+            PillTabs(
+              labels: [t.jobsOrdered, t.jobsDoing],
+              selected: _tab,
+              onChanged: (i) => setState(() => _tab = i),
+            ),
+            const SizedBox(height: 16),
+            if (!signedIn)
+              SignInPrompt(text: t.bookingsSignIn)
+            else
+              EmptyCard(text: _tab == 0 ? t.bookingsEmpty : t.jobsDoingEmpty),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+/// Kirjautumiskehote kortissa. Vie Asetukset-välilehdelle.
+class SignInPrompt extends StatelessWidget {
+  const SignInPrompt({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    return EmptyCard(
+      text: text,
+      action: TextButton(
+        onPressed: () => context.go('/account'),
+        child: Text(t.signInTitle),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { MobileNav } from "./MobileNav";
 import { NavLink } from "./NavLink";
 import styles from "./SiteHeader.module.css";
 
@@ -16,6 +17,7 @@ export async function SiteHeader() {
           <Link href="/" className={styles.brand}>
             {tc("brand")}
           </Link>
+          {/* Leveällä näytöllä linkit ovat tässä, puhelimessa alavalikossa (MobileNav). */}
           <nav aria-label={t("main")} className={styles.nav}>
             <ul>
               <li>
@@ -31,6 +33,7 @@ export async function SiteHeader() {
           </nav>
         </div>
       </header>
+      <MobileNav />
     </>
   );
 }

@@ -1,9 +1,6 @@
 {
   "@@locale": "fi",
   "appTitle": "Pikkutyö",
-  "navSearch": "Haku",
-  "navBookings": "Varaukset",
-  "navAccount": "Tili",
   "searchTitle": "Hae tekijä",
   "searchDate": "Päivä",
   "searchEmpty": "Tälle päivälle ei löytynyt tekijöitä.",
@@ -38,10 +35,43 @@
   "bookingsSignIn": "Kirjaudu nähdäksesi varauksesi.",
   "bookTitle": "Varaus",
   "bookComingSoon": "Varaus ja maksu tulevat sovellukseen seuraavissa vaiheissa.",
-  "accountTitle": "Tili",
   "settingsLanguage": "Kieli",
   "settingsTheme": "Ulkoasu",
   "optionSystem": "Laitteen mukaan",
   "themeLight": "Vaalea",
-  "themeDark": "Tumma"
+  "themeDark": "Tumma",
+  "navHome": "Koti",
+  "navJobs": "Työt",
+  "navMessages": "Viestit",
+  "navSettings": "Asetukset",
+  "homeGreeting": "Moi!",
+  "homeGreetingName": "Moi, {name}!",
+  "@homeGreetingName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeTitle": "Mitä tehdään?",
+  "modeFind": "Etsi tekijä",
+  "modeOffer": "Tarjoa työtä",
+  "workTire": "Renkaanvaihto",
+  "workSnow": "Lumityö",
+  "comingSoon": "Tulossa",
+  "dateToday": "Tänään",
+  "dateTomorrow": "Huomenna",
+  "searchButton": "Hae tekijöitä",
+  "offerLead": "Tee ilmoitus, aseta oma hintasi ja lisää ajat, joista asiakkaat varaavat.",
+  "offerStep1": "Tunnistaudu MobilePaylla",
+  "offerStep2": "Kerro, oletko yksityishenkilö vai yritys",
+  "offerStep3": "Julkaise ilmoitus",
+  "offerComingSoon": "Ilmoituksen teko tulee sovellukseen pian. Tekijäksi voi jo hakea sivustolla.",
+  "jobsOrdered": "Tilaamani",
+  "jobsDoing": "Tekemäni",
+  "jobsDoingEmpty": "Työt, jotka teet Pikkutyön kautta, näkyvät tässä.",
+  "messagesEmpty": "Ei viestejä. Voit viestiä tekijän kanssa, kun tilaus on tehty.",
+  "messagesSignIn": "Kirjaudu nähdäksesi viestisi.",
+  "settingsSectionApp": "Sovellus",
+  "signOut": "Kirjaudu ulos"
 }

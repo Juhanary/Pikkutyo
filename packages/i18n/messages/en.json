@@ -29,7 +29,10 @@
     "language": "Language",
     "main": "Main menu",
     "signIn": "Sign in",
-    "breadcrumb": "Breadcrumb"
+    "breadcrumb": "Breadcrumb",
+    "tabs": "Quick menu",
+    "tabHome": "Home",
+    "tabProvider": "Offer work"
   },
   "home": {
     "metaTitle": "Tyre change near you – free slots instantly | Pikkutyö",

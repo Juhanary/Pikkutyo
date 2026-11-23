@@ -1,26 +1,48 @@
-/* Etusivu: asfalttikaista, jonka alareunassa kulkee keltainen keskiviiva. */
+/*
+ * Etusivu: iso otsikko pääväriä ja hakulomake valkoisessa kortissa, kuten sovelluksen
+ * Koti-näkymässä. Kortin alla kulkee tiemerkinnän keltainen katkoviiva.
+ */
 .hero {
-  position: relative;
-  background: var(--c-asphalt);
-  color: var(--c-on-asphalt);
-  padding-block: var(--space-8) calc(var(--space-8) + 8px);
+  padding-block: var(--space-6) var(--space-5);
 }
 
-.hero::after {
+.title {
+  color: var(--c-primary);
+  max-width: 16ch;
+  margin-bottom: var(--space-3);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  max-width: 46ch;
+  color: var(--c-muted);
+  margin-bottom: var(--space-5);
+}
+
+.searchCard {
+  position: relative;
+  max-width: 60rem;
+  padding: var(--space-5);
+  background: var(--c-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+.searchCard::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: var(--space-5);
-  height: 6px;
-  background: repeating-linear-gradient(90deg, var(--c-marking) 0 56px, transparent 56px 96px);
+  left: var(--space-5);
+  right: var(--space-5);
+  bottom: calc(-1 * var(--space-4));
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--c-marking) 0 40px, transparent 40px 68px);
   animation: drive 1.6s ease-out 1 both;
 }
 
 /* Yksi liike sivulla: viiva liukuu paikalleen kuin auto ajaisi eteenpäin. */
 @keyframes drive {
   from {
-    background-position-x: 288px;
+    background-position-x: 204px;
     opacity: 0;
   }
   to {
@@ -29,16 +51,19 @@
   }
 }
 
-.hero h1 {
-  max-width: 14ch;
-  margin-bottom: var(--space-4);
-}
+@media (max-width: 47.99rem) {
+  .hero {
+    padding-block: var(--space-5) var(--space-4);
+  }
 
-.lead {
-  font-size: var(--text-lg);
-  max-width: 46ch;
-  color: color-mix(in srgb, var(--c-on-asphalt) 85%, transparent);
-  margin-bottom: var(--space-6);
+  .lead {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-4);
+  }
+
+  .searchCard {
+    padding: var(--space-4);
+  }
 }
 
 .section {

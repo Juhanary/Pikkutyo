@@ -29,7 +29,10 @@
     "language": "Kieli",
     "main": "Päävalikko",
     "signIn": "Kirjaudu",
-    "breadcrumb": "Murupolku"
+    "breadcrumb": "Murupolku",
+    "tabs": "Alavalikko",
+    "tabHome": "Koti",
+    "tabProvider": "Tekijäksi"
   },
   "home": {
     "metaTitle": "Renkaanvaihto lähelläsi – vapaat ajat heti | Pikkutyö",

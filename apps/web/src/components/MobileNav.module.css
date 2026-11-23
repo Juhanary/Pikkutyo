@@ -1,0 +1,69 @@
+/* Puhelimen alavalikko: kelluva pilli, valittu kohta täytetty pääväriä. */
+.bar {
+  display: none;
+}
+
+@media (max-width: 47.99rem) {
+  .bar {
+    display: block;
+    position: fixed;
+    z-index: 20;
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+    padding: 6px;
+    background: var(--c-surface);
+    border-radius: var(--radius-pill);
+    box-shadow:
+      0 0 0 1px var(--c-line),
+      0 8px 24px rgb(30 37 45 / 0.16);
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 3.75rem;
+  padding-inline: 4px;
+  border-radius: var(--radius-pill);
+  color: var(--c-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link:hover {
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+}
+
+.link[aria-current="page"] {
+  background: var(--c-primary);
+  color: var(--c-on-primary);
+  font-weight: 700;
+}
+
+.link:focus-visible {
+  border-radius: var(--radius-pill);
+}

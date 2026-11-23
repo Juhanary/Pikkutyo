@@ -2,9 +2,19 @@ import type { ReactNode } from "react";
 import styles from "./Field.module.css";
 
 /** Kentän otsikko, kenttä ja ohje. Label ympäröi kentän, joten id:itä ei tarvita. */
-export function Field({ label, hint, children }: { label: ReactNode; hint?: ReactNode; children: ReactNode }) {
+export function Field({
+  label,
+  hint,
+  className,
+  children,
+}: {
+  label: ReactNode;
+  hint?: ReactNode;
+  className?: string;
+  children: ReactNode;
+}) {
   return (
-    <label className={styles.field}>
+    <label className={[styles.field, className].filter(Boolean).join(" ")}>
       <span className={styles.label}>{label}</span>
       {children}
       {hint && <span className={styles.hint}>{hint}</span>}

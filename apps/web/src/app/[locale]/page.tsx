@@ -49,9 +49,13 @@ export default async function HomePage({ params }: Props) {
 
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className="container">
-          <h1 id="hero-title">{t("title")}</h1>
+          <h1 id="hero-title" className={styles.title}>
+            {t("title")}
+          </h1>
           <p className={styles.lead}>{t("lead")}</p>
-          <SearchForm locale={locale} cities={cities} variant="hero" />
+          <div className={styles.searchCard}>
+            <SearchForm locale={locale} cities={cities} variant="hero" />
+          </div>
         </div>
       </section>
 

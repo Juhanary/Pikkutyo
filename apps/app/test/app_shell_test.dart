@@ -48,28 +48,46 @@ Future<SharedPreferences> _pumpApp(
   return preferences;
 }
 
-Future<void> _openAccount(WidgetTester tester) async {
-  await tester.tap(find.text('Tili'));
+Future<void> _openSettings(WidgetTester tester) async {
+  await tester.tap(find.text('Asetukset'));
+  await tester.pumpAndSettle();
+}
+
+Future<void> _search(WidgetTester tester) async {
+  await tester.tap(find.text('Hae tekijöitä'));
   await tester.pumpAndSettle();
 }
 
 void main() {
-  setUp(() => appRouter.go('/search'));
+  setUp(() => appRouter.go('/home'));
 
-  testWidgets('alanavigaatio ja haku suomeksi', (tester) async {
+  testWidgets('alapalkki ja koti suomeksi', (tester) async {
+    await _pumpApp(tester);
+
+    expect(find.text('Koti'), findsOneWidget);
+    expect(find.text('Työt'), findsOneWidget);
+    expect(find.text('Viestit'), findsOneWidget);
+    expect(find.text('Asetukset'), findsOneWidget);
+    expect(find.text('Mitä tehdään?'), findsOneWidget);
+    expect(find.text('Renkaanvaihto'), findsOneWidget);
+    expect(find.text('Lumityö'), findsOneWidget);
+    expect(find.text('Tänään'), findsOneWidget);
+  });
+
+  testWidgets('haku näyttää tulokset', (tester) async {
     await _pumpApp(tester,
         rows: [_row('esimerkki-renkaat', 'Esimerkki Renkaat', 3500)]);
+    await _search(tester);
 
-    expect(find.text('Haku'), findsOneWidget);
-    expect(find.text('Varaukset'), findsOneWidget);
-    expect(find.text('Tili'), findsOneWidget);
     expect(find.text('Hae tekijä'), findsOneWidget);
     expect(find.text('Esimerkki Renkaat'), findsOneWidget);
+    expect(find.text('Yritys'), findsOneWidget);
     expect(find.textContaining('35,00'), findsOneWidget);
   });
 
   testWidgets('tyhjä tulos kertoo siitä', (tester) async {
     await _pumpApp(tester);
+    await _search(tester);
 
     expect(find.text('Tälle päivälle ei löytynyt tekijöitä.'), findsOneWidget);
   });
@@ -77,6 +95,7 @@ void main() {
   testWidgets('tekijän valinta avaa varausnäkymän', (tester) async {
     await _pumpApp(tester,
         rows: [_row('esimerkki-renkaat', 'Esimerkki Renkaat', 3500)]);
+    await _search(tester);
 
     await tester.tap(find.text('Esimerkki Renkaat'));
     await tester.pumpAndSettle();
@@ -84,29 +103,44 @@ void main() {
     expect(find.text('Varaus'), findsOneWidget);
   });
 
+  testWidgets('Tarjoa työtä näyttää tekijän askeleet', (tester) async {
+    await _pumpApp(tester);
+
+    await tester.tap(find.text('Tarjoa työtä'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Tunnistaudu MobilePaylla'), findsOneWidget);
+    expect(find.text('Hae tekijöitä'), findsNothing);
+  });
+
   testWidgets('välilehdet vaihtuvat', (tester) async {
     await _pumpApp(tester);
 
-    await tester.tap(find.text('Varaukset'));
+    await tester.tap(find.text('Työt'));
     await tester.pumpAndSettle();
     expect(find.text('Kirjaudu nähdäksesi varauksesi.'), findsOneWidget);
+    expect(find.text('Tilaamani'), findsOneWidget);
 
-    await _openAccount(tester);
+    await tester.tap(find.text('Viestit'));
+    await tester.pumpAndSettle();
+    expect(find.text('Kirjaudu nähdäksesi viestisi.'), findsOneWidget);
+
+    await _openSettings(tester);
     expect(find.text('Kirjaudu MobilePaylla'), findsOneWidget);
   });
 
   testWidgets('kielen vaihto näkyy heti ja tallentuu', (tester) async {
     final prefs = await _pumpApp(tester);
-    await _openAccount(tester);
+    await _openSettings(tester);
 
     await tester.tap(find.byType(DropdownButton<String?>));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Svenska').last);
     await tester.pumpAndSettle();
 
-    // "Konto" on sekä otsikossa että alanavigaatiossa.
-    expect(find.text('Konto'), findsWidgets);
-    expect(find.text('Sök'), findsOneWidget);
+    // "Inställningar" on sekä otsikossa että alapalkissa.
+    expect(find.text('Inställningar'), findsWidgets);
+    expect(find.text('Hem'), findsOneWidget);
     expect(prefs.getString('locale'), 'sv');
   });
 
@@ -114,13 +148,13 @@ void main() {
       (tester) async {
     await _pumpApp(tester, prefs: {'locale': 'en'});
 
-    expect(find.text('Find a provider'), findsOneWidget);
-    expect(find.text('Search'), findsOneWidget);
+    expect(find.text('What needs doing?'), findsOneWidget);
+    expect(find.text('Home'), findsOneWidget);
   });
 
   testWidgets('tumma ulkoasu tallentuu', (tester) async {
     final prefs = await _pumpApp(tester);
-    await _openAccount(tester);
+    await _openSettings(tester);
 
     await tester.tap(find.byType(DropdownButton<ThemeMode>));
     await tester.pumpAndSettle();
@@ -129,7 +163,7 @@ void main() {
 
     expect(prefs.getString('theme_mode'), 'dark');
     expect(
-      Theme.of(tester.element(find.text('Tili').first)).brightness,
+      Theme.of(tester.element(find.text('Asetukset').first)).brightness,
       Brightness.dark,
     );
   });

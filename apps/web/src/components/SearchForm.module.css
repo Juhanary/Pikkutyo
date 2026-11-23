@@ -7,18 +7,50 @@
 
 .submit {
   align-self: end;
+  min-height: 3rem;
 }
 
-/* Etusivulla lomake on suoraan asfalttikaistan päällä; kentät pysyvät vaaleina. */
+/*
+ * Etusivulla lomake on valkoisessa kortissa. Puhelimessa kaupunki ja paikka ovat omilla
+ * riveillään ja päivä ja haku vierekkäin alimpana; leveällä näytöllä kaikki ovat samalla rivillä.
+ */
 .hero {
-  color: var(--c-on-asphalt);
-  max-width: 52rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "city city"
+    "location location"
+    "date submit";
+  gap: var(--space-3);
 }
 
-.hero select,
-.hero input {
-  background: #ffffff;
-  color: #1e252d;
-  border-color: transparent;
-  color-scheme: light;
+.hero .city {
+  grid-area: city;
+}
+
+.hero .location {
+  grid-area: location;
+}
+
+.hero .date {
+  grid-area: date;
+}
+
+.hero .submit {
+  grid-area: submit;
+}
+
+@media (min-width: 36rem) {
+  .hero {
+    grid-template-areas:
+      "city location"
+      "date submit";
+  }
+}
+
+@media (min-width: 60rem) {
+  .hero {
+    grid-template-columns: 1.2fr 1fr 1fr auto;
+    grid-template-areas: "city location date submit";
+    gap: var(--space-4);
+  }
 }

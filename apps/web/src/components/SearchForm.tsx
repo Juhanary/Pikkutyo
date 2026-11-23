@@ -14,8 +14,8 @@ export interface SearchDefaults {
 }
 
 /**
- * Hakulomake (GET → /haku). Toimii ilman JavaScriptiä. Etusivulla (variant="hero") päivä jää
- * tyhjäksi, koska sivu on välimuistissa: haku käyttää silloin tätä päivää.
+ * Hakulomake (GET → /haku). Toimii ilman JavaScriptiä. Etusivulla (variant="hero") lomake on
+ * kortissa, ja päivä jää tyhjäksi, koska sivu on välimuistissa: haku käyttää silloin tätä päivää.
  */
 export async function SearchForm({
   locale,
@@ -41,7 +41,7 @@ export async function SearchForm({
       className={[styles.form, hero && styles.hero].filter(Boolean).join(" ")}
       role="search"
     >
-      <Field label={t("city")}>
+      <Field label={t("city")} className={styles.city}>
         <select name="city" defaultValue={defaults.citySlug ?? cities[0]?.slugs[locale]}>
           {cities.map((c) => (
             <option key={c.id} value={c.slugs[locale]}>
@@ -50,15 +50,15 @@ export async function SearchForm({
           ))}
         </select>
       </Field>
-      <Field label={t("date")}>
-        <input type="date" name="date" defaultValue={defaults.date} min={minDate} />
-      </Field>
-      <Field label={t("location")}>
+      <Field label={t("location")} className={styles.location}>
         <select name="loc" defaultValue={defaults.locationType ?? ""}>
           <option value="">{tc("anyLocation")}</option>
           <option value="workshop">{tc("atWorkshop")}</option>
           <option value="mobile">{tc("atHome")}</option>
         </select>
+      </Field>
+      <Field label={t("date")} className={styles.date}>
+        <input type="date" name="date" defaultValue={defaults.date} min={minDate} />
       </Field>
       {!hero && (
         <Field label={t("kind")}>
@@ -69,7 +69,20 @@ export async function SearchForm({
           </select>
         </Field>
       )}
-      <Button type="submit" variant={hero ? "marking" : "primary"} className={styles.submit}>
+      <Button type="submit" variant="primary" className={styles.submit}>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="6.5" />
+          <path d="m16 16 4.5 4.5" />
+        </svg>
         {t("submit")}
       </Button>
     </form>
