@@ -1,4 +1,4 @@
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import { getTranslations } from "next-intl/server";
 import { getPathname } from "@/i18n/navigation";
 import { t as tr } from "@/lib/format";

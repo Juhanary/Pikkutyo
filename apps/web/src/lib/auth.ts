@@ -1,6 +1,6 @@
 // Kirjautumisen ja tarjoajahakemuksen yhteiset apufunktiot (ilman Supabase-riippuvuuksia,
 // joten ne voi testata yksikkötesteillä).
-import { isLocale, type Locale } from "@vaihdarenkaat/i18n";
+import { isLocale, type Locale } from "@pikkutyo/i18n";
 import type { LocationType, ProviderKind } from "./types";
 
 /** Ehtojen versio, jonka hakija hyväksyy. Muuta, kun ehdot muuttuvat. */
@@ -15,10 +15,12 @@ export function safeNext(value: string | null | undefined, fallback = "/tarjoaja
   if (!value || !value.startsWith("/") || value.startsWith("//")) return fallback;
   // Ohjausmerkit (0x00–0x1f, 0x7f), välilyönti ja kenoviiva.
   if (/[\x00-\x1f\x7f \\]/.test(value)) return fallback;
-  const base = "https://vaihdarenkaat.invalid";
+  const base = "https://pikkutyo.invalid";
   try {
     const url = new URL(value, base);
     if (url.origin !== base) return fallback;
+    // Normalisointi voi tuottaa "//" ("/.//evil" → "//evil"), joten tarkistetaan tulos uudelleen.
+    if (url.pathname.startsWith("//")) return fallback;
     return `${url.pathname}${url.search}${url.hash}`;
   } catch {
     return fallback;

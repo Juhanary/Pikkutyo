@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "@vaihdarenkaat/i18n";
+import { defaultLocale, locales } from "@pikkutyo/i18n";
 import { defineRouting } from "next-intl/routing";
 
 // Sisäiset reittiavaimet ovat suomeksi ja vastaavat app/[locale]/-kansioita.

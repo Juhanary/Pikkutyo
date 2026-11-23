@@ -1,6 +1,6 @@
 "use client";
 
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import { createClient } from "@supabase/supabase-js";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";

@@ -1,4 +1,4 @@
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import { getTranslations } from "next-intl/server";
 import { Button, Choice, ChoiceGroup, Field } from "@/components/ui";
 import type { ProviderApplication } from "@/lib/auth";

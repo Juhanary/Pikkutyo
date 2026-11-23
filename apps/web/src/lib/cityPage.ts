@@ -1,4 +1,4 @@
-import { pathSegments, type Locale } from "@vaihdarenkaat/i18n";
+import { pathSegments, type Locale } from "@pikkutyo/i18n";
 import { getCityBySlug, getCityStats, getPublishedDistricts } from "./data";
 import type { City, CityStat, District, LocationType } from "./types";
 

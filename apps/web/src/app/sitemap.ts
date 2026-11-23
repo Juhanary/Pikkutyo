@@ -1,4 +1,4 @@
-import { locales, pathSegments, type Locale } from "@vaihdarenkaat/i18n";
+import { locales, pathSegments, type Locale } from "@pikkutyo/i18n";
 import type { MetadataRoute } from "next";
 import { getActiveCities, getActiveProviderSlugs, getCityStats, getPublishedDistricts } from "@/lib/data";
 import { localizedUrl } from "@/lib/seo";

@@ -1,7 +1,7 @@
-import { locales, pathSegments } from "@vaihdarenkaat/i18n";
-import en from "@vaihdarenkaat/i18n/messages/en.json";
-import fi from "@vaihdarenkaat/i18n/messages/fi.json";
-import sv from "@vaihdarenkaat/i18n/messages/sv.json";
+import { locales, pathSegments } from "@pikkutyo/i18n";
+import en from "@pikkutyo/i18n/messages/en.json";
+import fi from "@pikkutyo/i18n/messages/fi.json";
+import sv from "@pikkutyo/i18n/messages/sv.json";
 import { describe, expect, it } from "vitest";
 import { routing } from "@/i18n/routing";
 import {
@@ -174,6 +174,10 @@ describe("tarjoajahakemus", () => {
     expect(safeNext("/" + String.fromCharCode(9) + "/evil.example")).toBe("/tarjoajaksi/hakemus");
     expect(safeNext("/" + String.fromCharCode(10) + "/evil.example")).toBe("/tarjoajaksi/hakemus");
     expect(safeNext("/ /evil.example")).toBe("/tarjoajaksi/hakemus");
+    // Normalisoinnin jälkeinen "//" ("/.//evil" → "//evil").
+    for (const v of ["/.//evil.example", "/a/..//evil.example", "/%2e//evil.example", "/./%2e//evil.example"]) {
+      expect(safeNext(v)).toBe("/tarjoajaksi/hakemus");
+    }
     expect(safeNext("/sv/logga-in?next=%2F#x")).toBe("/sv/logga-in?next=%2F#x");
   });
 

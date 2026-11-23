@@ -1,5 +1,5 @@
 {
-  "name": "vaihdarenkaat",
+  "name": "pikkutyo",
   "private": true,
   "packageManager": "npm@10.9.9",
   "engines": {
@@ -11,7 +11,7 @@
     "packages/i18n"
   ],
   "scripts": {
-    "dev": "turbo run dev --filter=@vaihdarenkaat/web",
+    "dev": "turbo run dev --filter=@pikkutyo/web",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",

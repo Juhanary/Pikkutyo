@@ -1,6 +1,6 @@
 # Supabase CLI -asetukset. Pilviprojektin asetukset (alue eu-central-1,
 # kirjautumistavat, redirect-osoitteet) tehdään lisäksi Supabasen hallintapaneelissa.
-project_id = "vaihdarenkaat"
+project_id = "pikkutyo"
 
 [api]
 enabled = true
@@ -24,8 +24,8 @@ site_url = "http://localhost:3000"
 additional_redirect_urls = [
   "http://localhost:3000/**",
   "http://localhost:8080/**",
-  "https://vaihdarenkaat.fi/**",
-  "https://app.vaihdarenkaat.fi/**",
+  "https://pikkutyo.fi/**",
+  "https://app.pikkutyo.fi/**",
 ]
 jwt_expiry = 3600
 enable_signup = true

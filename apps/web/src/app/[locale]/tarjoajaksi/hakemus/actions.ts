@@ -3,7 +3,7 @@
 // Tarjoajahakemuksen toiminnot. Kaikki kirjoitukset tehdään käyttäjän omilla oikeuksilla
 // (RLS ja sarakekohtaiset oikeudet: käyttäjä muokkaa vain omaa luonnostaan ja vain
 // sisältökenttiä). Tila, tunnistus ja kurssi kirjataan RPC:illä tai palvelun puolella.
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import { redirect } from "next/navigation";
 import { getPathname } from "@/i18n/navigation";
 import { isValidBusinessId, localeOf, TERMS_VERSION } from "@/lib/auth";

@@ -1,6 +1,6 @@
 "use server";
 
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import { redirect } from "next/navigation";
 import { getPathname } from "@/i18n/navigation";
 import { localeOf, safeNext } from "@/lib/auth";

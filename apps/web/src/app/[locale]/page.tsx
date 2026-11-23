@@ -1,4 +1,4 @@
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { JsonLd } from "@/components/JsonLd";
@@ -41,7 +41,7 @@ export default async function HomePage({ params }: Props) {
         data={{
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "Vaihdarenkaat",
+          name: "Pikkutyö",
           url: absoluteUrl("/"),
           inLanguage: locale,
         }}

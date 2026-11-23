@@ -1,4 +1,4 @@
-import { locales } from "@vaihdarenkaat/i18n";
+import { locales } from "@pikkutyo/i18n";
 import type { MetadataRoute } from "next";
 import { getPathname } from "@/i18n/navigation";
 import { env } from "@/lib/env";

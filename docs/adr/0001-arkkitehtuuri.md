@@ -13,7 +13,7 @@ renderöi canvasille, joten hakukoneet eivät näe sen sisältöä hyvin.
 
 - Julkiset sivut, haku ja tarjoajaprofiilit Next.js:llä (SSR/ISR, Vercel fra1).
 - Varaus, omat varaukset ja tarjoajan näkymät Flutterilla (iOS, Android, web
-  osoitteessa app.vaihdarenkaat.fi). Next.js:n Varaa-nappi on syvälinkki Flutteriin.
+  osoitteessa app.pikkutyo.fi). Next.js:n Varaa-nappi on syvälinkki Flutteriin.
 - Ylläpito Next.js:n /admin-alueella.
 - Supabase eu-central-1 (Frankfurt). Säännöt Postgres-funktioina (RPC), maksut ja webhookit
   Edge Functionsissa.

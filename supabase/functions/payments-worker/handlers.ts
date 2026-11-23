@@ -83,7 +83,7 @@ function assertSameGateway(payment: PaymentRow, gateway: PaymentGateway): void {
 }
 
 function key(event: OutboxEvent, step: string): string {
-  return `vaihdarenkaat:${event.id}:${step}`;
+  return `pikkutyo:${event.id}:${step}`;
 }
 
 // ---------------------------------------------------------------------------

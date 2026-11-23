@@ -1,4 +1,4 @@
-import { defaultLocale, locales, type Locale } from "@vaihdarenkaat/i18n";
+import { defaultLocale, locales, type Locale } from "@pikkutyo/i18n";
 import type { Metadata } from "next";
 import { getPathname } from "@/i18n/navigation";
 import { env } from "./env";

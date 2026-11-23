@@ -1,74 +1,74 @@
-# ADR 0003: Ansaintamalli – palkkio varauksesta, ei mainoksia
+# ADR 0003: Ansaintamalli – palvelumaksu asiakkaalta ja välityspalkkio tekijältä
 
-- Tila: ehdotus. Päätetty: hyvitykset jaetaan suhteessa (2026-11-06). Palkkion taso,
-  pilotin 0 % ja palvelumaksu ovat vielä ehdotuksia, eikä niistä ole päätetty.
-- Päivä: 2026-11-06
+- Tila: päätetty (suunnitelma "Pikkutyö – suunnitelma", 17.11.2026). Hyvitykset jaetaan
+  suhteessa (2026-11-06).
+- Päivä: 2026-11-06, päivitetty 2026-11-17
 
 ## Lyhyesti
 
-Ehdotus: alusta tienaa ottamalla pienen palkkion jokaisesta toteutuneesta
-renkaanvaihdosta. Ensimmäisellä kaudella palkkio olisi 0 %, jotta tarjoajat saadaan mukaan.
-Mainoksia ei käytetä.
+- **Asiakkaalta palvelumaksu 10 %, kuitenkin vähintään 2,99 €** (sis. ALV 25,5 %).
+- **Yrityksiltä, toiminimiltä ja kevytyrittäjiltä välityspalkkio 5 %.**
+- **Yksityishenkilöltä 0 %** (ADR 0006). Liiketoimintapäätös, ei lakipakko: yksityishenkilö
+  tekee työn toimeksiantona, joten työnvälityksen maksukielto ei koske sitä.
+- Tekijä asettaa työn hinnan ilmoitusta tehdessään. Hakutuloksissa näytetään kokonaishinta,
+  ennen tilausta työn hinta ja palvelumaksu eritellään.
+- Ei mainoksia. Maksettu näkyvyys merkitään aina selvästi, jos sellaista joskus tulee.
 
-Päätetty: jos asiakkaalle palautetaan rahaa, palkkio pienenee samassa suhteessa kuin
-tarjoajan osuus.
+## Kate
 
-## Konteksti
-
-Vaihtoehtoja oli kolme:
-
-| Malli | Miten tienaa | Miksi ei (nyt) / miksi kyllä |
+| 35 €:n työ | Yritys, toiminimi tai kevytyrittäjä | Yksityishenkilö |
 |---|---|---|
-| Mainokset (kuten tori.fi) | Näytöt ja klikit | Tarvitsee valtavan kävijämäärän. Renkaanvaihto on kapea ja kausittainen aihe: muutama viikko keväällä ja syksyllä. Tuotto jäisi satoihin euroihin kaudessa, ja mainokset heikentäisivät luottamusta. |
-| Kuukausimaksu tarjoajille | Kiinteä maksu | Yksityinen tekijä ei maksa etukäteen palvelusta, jonka hyötyä ei vielä näe. Kausittaisuus tekee kuukausimaksusta huonon kaupan talvella. |
-| **Palkkio varauksesta** | % jokaisesta työstä | Maksu kulkee jo alustan kautta (varataan ennen työtä, veloitetaan kuittauksen jälkeen). Tarjoaja maksaa vain, kun saa työn ja rahat. |
+| Asiakas maksaa | 38,50 € | 38,50 € |
+| Tekijä saa | 33,25 € | 35,00 € |
+| Alustan bruttotuotto | 5,25 € | 3,50 € |
+| ALV 25,5 % | −1,07 € | −0,71 € |
+| Stripe-kortti (1,5 % + 0,25 €) | −0,83 € | −0,83 € |
+| Connect-tilitys (0,25 % + 0,10 €) | −0,19 € | −0,19 € |
+| **Kate** | **noin 3,16 €** | **noin 1,77 €** |
 
-Esimerkki: 50 € työ, palkkio 10 % = 5 €. Maksupalvelu vie siitä noin 1 €, joten
-alustalle jää noin 4 € varausta kohden.
+20 €:n työssä minimimaksu 2,99 € on 15 %, ja kate on noin 2,43 € (yritys) tai 1,64 €
+(yksityishenkilö). Stripe Connect veloittaa lisäksi 2 € kuussa jokaisesta aktiivisesta
+tekijästä.
 
-## Ehdotus
+Pilotin kiinteät kulut ovat noin 310 €/kk, josta Vipps MobilePay Login Advanced 60 €/kk
+(20 aktiivisella tekijällä noin 350 €/kk). Nollatulokseen tarvitaan noin 119–135 tilausta
+kuukaudessa, kun 60 % töistä on yritysten.
 
-1. **Palkkio on oletuksena 10 % työn hinnasta ja matkalisästä.** Arvo on säädettävissä
-   (`platform_settings.default_commission_bps`, 1000 = 10 %). Ehdotettu haarukka on
-   8–12 %; lopullinen taso päätetään pilotin jälkeen.
-2. **Pilottikaudella 0 %.** Kannan oletus on 10 %, joten pilotissa jokaiselle tarjoajalle
-   lisätään poikkeus voimassaolopäivällä (`provider_commission_overrides`). Sovittu palkkio ei näy julkisesti, vain tarjoajan
-   omistajalle ja ylläpidolle.
-3. **Palkkio lukitaan, kun asiakas varaa ajan.** Myöhempi muutos ei muuta jo tehtyjä
-   varauksia.
-4. **Asiakkaan palvelumaksu on mahdollinen, mutta pilotissa 0 €**
-   (`customer_service_fee_cents`).
-5. **Ei mainoksia.** Näkyvyyden ostaminen (nostot) harkitaan vasta, kun yhdessä
-   kaupungissa on niin monta tarjoajaa, että järjestyksellä on merkitystä. Maksettu
-   näkyvyys merkitään aina selvästi ("Mainos" / "Nostettu"), koska EU:n säännöt
-   (kuluttajansuojan Omnibus-direktiivi ja P2B-asetus) edellyttävät sitä.
+Hylätyt: 1 € kiinteä maksu (ei kata korttikuluja), 8 % (väh. 1,50 €) (kate liian pieni)
+ja 18 % (väh. 3,50 €) (liian suuri pikkutöille).
+
+## Päätös
+
+1. **Palvelumaksu ja palkkio ovat alustan omia maksuja, eivät osa työn hintaa.**
+   Tekijä päättää työn hinnan (ADR 0005).
+2. **Arvot ovat säädettäviä** `platform_settings`-taulussa: asiakkaan palvelumaksu
+   (bps + vähimmäismäärä senteissä: 1000 bps, 299 snt) ja tekijän palkkio
+   (`default_commission_bps` 500; yksityishenkilöillä 0).
+3. **Pilotissa voidaan antaa alennus** tarjoajakohtaisella poikkeuksella
+   (`provider_commission_overrides`).
+4. **Maksut lukitaan, kun asiakas varaa.** Myöhempi muutos ei koske tehtyjä varauksia.
 
 ### Hyvitykset jaetaan suhteessa
 
-Jos asiakkaalle palautetaan osa maksusta, sekä tarjoajan osuus että alustan palkkio
-pienenevät samalla prosentilla.
+Jos asiakkaalle palautetaan osa maksusta, tekijän osuus ja alustan palkkio pienenevät
+samalla prosentilla. Asiakkaan palvelumaksu palautetaan vain, jos tekijä perui tai työ
+jäi tekemättä tekijän vuoksi.
 
 | | Ennen hyvitystä | 20 % hyvitys |
 |---|---|---|
-| Asiakas maksoi | 50,00 € | 40,00 € |
-| Tarjoaja saa | 45,00 € | 36,00 € |
-| Alusta saa (10 %) | 5,00 € | 4,00 € |
+| Työn hinta | 50,00 € | 40,00 € |
+| Tekijä saa (95 %) | 47,50 € | 38,00 € |
+| Alustan palkkio (5 %) | 2,50 € | 2,00 € |
 
-Perustelu: alusta ei hyödy huonosta työstä, eikä tarjoaja maksa palkkiota rahasta,
-jota hän ei saanut. Sama käytäntö on Stripen `refund_application_fee`-asetuksessa.
-
-Sääntö lasketaan yhdessä paikassa, näkymässä `payment_settlements`. Tarjoajan
-tienestit (`provider_earnings`) ja verottajan DAC7-raportti lukevat sitä.
+Sääntö lasketaan yhdessä paikassa, näkymässä `payment_settlements`. Tarjoajan tienestit
+(`provider_earnings`) ja DAC7-raportti lukevat sitä.
 
 ## Seuraukset
 
-- **Ohitus on suurin riski.** Renkaat vaihdetaan kaksi kertaa vuodessa usein saman
-  tekijän luona, ja toisella kerralla on houkuttelevaa sopia suoraan. Alustan on oltava
-  helpompi kuin ohittaminen: muistutus seuraavasta kaudesta suoraan varaukseen,
-  reklamaatiosuoja ja arvostelut vain alustan kautta tehdyistä töistä.
-- Korjaamoilla on omat asiakkaansa, joten niille voidaan myöhemmin tarvita matalampi
-  palkkio tai kuukausimaksu. Päätetään pilotin kokemusten perusteella.
-- Alusta käsittelee rahaa, joten se raportoi tarjoajien tulot DAC7:n mukaisesti
-  (`admin_dac7_report`).
-- Myöhemmät lisätulot, jotka eivät haittaa käyttöä: kumppanuus rengaskaupan kanssa
-  (uudet renkaat, rengashotelli) ja merkityt nostot.
+- **Toteutettava kantaan:** palvelumaksu prosenttina ja vähimmäismääränä (nykyinen
+  `customer_service_fee_cents` on kiinteä summa), palkkion oletus 500 bps (nyt 1000) ja 0 %
+  yksityishenkilötekijöille.
+- **Palvelun ohittaminen:** käyttäjät saavat sopia uusista töistä palvelun ulkopuolella,
+  mutta maksuturva, riitojen käsittely ja arvostelut koskevat vain palvelussa maksettuja
+  töitä. Puhelinnumero ja tarkka osoite näytetään vasta, kun tekijä on hyväksynyt tilauksen.
+- Alusta raportoi tekijöiden tulot DAC7:n mukaisesti (`admin_dac7_report`).

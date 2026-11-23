@@ -1,6 +1,6 @@
 // Tietokannan muodot, joita sivusto käyttää. Kun `npm run db:types` on ajettu,
-// nämä voidaan johtaa @vaihdarenkaat/db-types-paketista.
-import type { Locale } from "@vaihdarenkaat/i18n";
+// nämä voidaan johtaa @pikkutyo/db-types-paketista.
+import type { Locale } from "@pikkutyo/i18n";
 
 export type I18nText = Partial<Record<Locale, string>> & { fi: string };
 export type LocationType = "workshop" | "mobile";

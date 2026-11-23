@@ -1,6 +1,6 @@
 {
   "common": {
-    "brand": "Vaihdarenkaat",
+    "brand": "Pikkutyö",
     "book": "Boka",
     "search": "Sök",
     "atHome": "Hemma på gården",
@@ -32,7 +32,7 @@
     "breadcrumb": "Sökväg"
   },
   "home": {
-    "metaTitle": "Däckbyte nära dig – lediga tider direkt | Vaihdarenkaat",
+    "metaTitle": "Däckbyte nära dig – lediga tider direkt | Pikkutyö",
     "metaDescription": "Jämför priser för däckbyte och boka en ledig tid på verkstad eller hemma på gården. Betalningen dras först när arbetet är godkänt.",
     "title": "Däckbyte nära dig",
     "lead": "Se lediga tider direkt. Betalningen dras först när arbetet är godkänt.",
@@ -118,7 +118,7 @@
     "b3": "Passar verkstäder och privata utförare med egen utrustning och ansvarsförsäkring.",
     "cta": "Börja ansökan",
     "readMore": "Läs mer om att bli utförare",
-    "benefitsTitle": "Varför Vaihdarenkaat",
+    "benefitsTitle": "Varför Pikkutyö",
     "stepsTitle": "Så ansöker du",
     "s1": "Logga in med e-post och fyll i grunduppgifterna.",
     "s2": "Ladda upp en bild på verktygen och intyg om ansvarsförsäkring.",

@@ -9,6 +9,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
   return {
     locale,
     timeZone: "Europe/Helsinki",
-    messages: (await import(`@vaihdarenkaat/i18n/messages/${locale}.json`)).default,
+    messages: (await import(`@pikkutyo/i18n/messages/${locale}.json`)).default,
   };
 });

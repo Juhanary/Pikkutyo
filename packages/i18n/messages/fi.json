@@ -1,6 +1,6 @@
 {
   "common": {
-    "brand": "Vaihdarenkaat",
+    "brand": "Pikkutyö",
     "book": "Varaa",
     "search": "Hae",
     "atHome": "Kotipihalla",
@@ -32,7 +32,7 @@
     "breadcrumb": "Murupolku"
   },
   "home": {
-    "metaTitle": "Renkaanvaihto lähelläsi – vapaat ajat heti | Vaihdarenkaat",
+    "metaTitle": "Renkaanvaihto lähelläsi – vapaat ajat heti | Pikkutyö",
     "metaDescription": "Vertaa renkaanvaihdon hintoja ja varaa vapaa aika korjaamolle tai kotipihallesi. Maksu veloitetaan vasta, kun työ on kuitattu.",
     "title": "Renkaanvaihto lähelläsi",
     "lead": "Näet vapaat ajat heti, ja maksu veloitetaan vasta kun työ on kuitattu.",
@@ -118,7 +118,7 @@
     "b3": "Sopii korjaamoille ja yksityisille tekijöille, joilla on omat välineet ja vastuuvakuutus.",
     "cta": "Aloita hakemus",
     "readMore": "Lue lisää tarjoajaksi ryhtymisestä",
-    "benefitsTitle": "Miksi Vaihdarenkaat",
+    "benefitsTitle": "Miksi Pikkutyö",
     "stepsTitle": "Näin haet",
     "s1": "Kirjaudu sähköpostilla ja täytä perustiedot.",
     "s2": "Lataa kuva välineistä ja vastuuvakuutuksen todistus.",

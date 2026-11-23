@@ -1,5 +1,5 @@
 {
-  "name": "@vaihdarenkaat/web",
+  "name": "@pikkutyo/web",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,7 @@
     "@supabase/server": "1.9.2",
     "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.119.0",
-    "@vaihdarenkaat/i18n": "*",
+    "@pikkutyo/i18n": "*",
     "next": "16.4.5",
     "next-intl": "4.14.9",
     "react": "19.3.1",

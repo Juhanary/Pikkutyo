@@ -51,7 +51,7 @@ select is(
     where n.nspname = 'private'
       and (has_function_privilege('anon', p.oid, 'execute')
            or has_function_privilege('authenticated', p.oid, 'execute'))),
-  array['booking_role', 'can_upload_booking_photo', 'is_admin', 'is_provider_member', 'resource_provider', 'try_uuid'],
+  array['application_document_count', 'booking_role', 'can_upload_booking_photo', 'is_admin', 'is_provider_member', 'resource_provider', 'try_uuid'],
   'private-skeemassa API-roolit saavat suorittaa vain RLS-politiikoiden apufunktioita'
 );
 

@@ -12,7 +12,7 @@ loadEnvConfig(path.resolve(process.cwd(), "../.."), process.env.NODE_ENV !== "pr
 const nextConfig: NextConfig = {
   // Cache Components jätetään myöhemmäksi: next-intl ja ISR-sivut toimivat
   // nyt aiemmalla välimuistimallilla (revalidate + fetch-tagit). Ks. docs/adr/0002.
-  transpilePackages: ["@vaihdarenkaat/i18n"],
+  transpilePackages: ["@pikkutyo/i18n"],
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.SUPABASE_URL ?? "",
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.SUPABASE_PUBLISHABLE_KEY ?? "",

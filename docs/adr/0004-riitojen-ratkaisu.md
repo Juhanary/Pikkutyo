@@ -3,6 +3,18 @@
 - Tila: **avoin, ei päätetty.** Käydään läpi asiantuntijoiden kanssa (juristi,
   kuluttajansuoja, vakuutus) ennen kuin mitään toteutetaan.
 - Päivä: 2026-11-06
+- Päivitys 2026-11-17: suunnitelmassa ("Pikkutyö – suunnitelma") on valittu malli: asiakas
+  ilmoittaa ongelmasta 48 tunnin kuluessa kuittauksesta, osapuolet yrittävät sopia 7 päivää, sen
+  jälkeen palvelu päättää kuvien ja viestien perusteella maksun tilityksestä tai palautuksesta.
+  Koodin nykyiset määräajat (24 h) päivitetään tähän.
+- Päivitys 2026-11-23: maksupäätöksen tekee ihminen ja perustelee sen (ADR 0007). Ratkaisu
+  koskee vain palvelussa olevaa maksua, eikä palvelu korvaa vahinkoja omasta pussistaan.
+  Peruutukset on päätetty suunnitelmassa: tekijän peruutuksesta tai poisjäännistä asiakas ei
+  maksa mitään; asiakkaan alle 24 tunnin peruutuksesta, kun tekijä on yksityishenkilö, asiakas
+  maksaa 50 % työn hinnasta ja palvelumaksun; sama maksu, jos asiakas ei ole tavoitettavissa
+  tai työtä ei voi tehdä asiakkaasta johtuvasta syystä (tapaus 2). Elinkeinonharjoittajatekijän
+  asiakas voi perua maksutta, kunnes työ alkaa. Maksu varataan 24 tuntia ennen työtä, joten
+  varauksesta veloitukseen kuluu enintään noin 3,5 päivää.
 
 ## Tavoite
 
@@ -53,8 +65,9 @@ sopuun.
 
 - **Vaihtoehto:** määräajat. Jos tekijä ei vastaa 48 tunnissa, asiakkaan pyyntö
   hyväksytään. Jos asiakas ei vastaa tarjoukseen 48 tunnissa, tarjous hyväksytään.
-- Huom: koko kulun on mahduttava maksuvarauksen voimassaoloon (Stripessä kortilla noin
-  7 päivää), muuten rahaa ei voi enää veloittaa.
+- Huom: koko kulun on mahduttava maksuvarauksen voimassaoloon (Stripessä kortilla yleensä
+  7 päivää, Visan kauppiaan tekemässä automaattisessa varauksessa 4 päivää 18 tuntia), muuten
+  rahaa ei voi enää veloittaa.
 
 ### 5. Umpikuja: kumpikaan ei hyväksy
 

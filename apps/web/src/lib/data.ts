@@ -1,8 +1,8 @@
 // Palvelinpuolen datahaut Supabasesta. Kaikki haut käyttävät publishable-avainta,
 // joten RLS rajaa näkyvän datan samoin kuin selaimessa. Tulokset välimuistitetaan
 // Next.js:n fetch-välimuistiin tageilla, joita revalidate-rajapinta mitätöi.
-import type { Locale } from "@vaihdarenkaat/i18n";
-import { locales } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
+import { locales } from "@pikkutyo/i18n";
 import { createClient } from "@supabase/supabase-js";
 import { env } from "./env";
 import type {

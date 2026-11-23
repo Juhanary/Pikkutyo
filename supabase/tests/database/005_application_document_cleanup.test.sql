@@ -1,9 +1,9 @@
--- Hakemusliitteiden poisto Storagesta: vain oma, luonnoksen ja kirjaamaton tiedosto.
+-- Hakemusliitteet Storagessa: lataus vain omaan luonnokseen, poisto vain omasta kirjaamattomasta.
 begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
 
-select plan(4);
+select plan(10);
 
 insert into auth.users (id, email) values
   ('00000000-0000-0000-0000-0000000005a1', 'hakija5@example.test'),
@@ -12,10 +12,11 @@ insert into auth.users (id, email) values
 create temp table ctx (key text primary key, val text);
 grant all on ctx to anon, authenticated;
 create function pg_temp.v(k text) returns text language sql as $$ select val from ctx where key = k $$;
-create function pg_temp.login(uid text) returns void language sql as $$
-  select set_config('request.jwt.claims', json_build_object('sub', uid, 'role', 'authenticated')::text, true);
+create function pg_temp.login(uid text, anon boolean default false) returns void language sql as $$
+  select set_config('request.jwt.claims',
+    json_build_object('sub', uid, 'role', 'authenticated', 'is_anonymous', anon)::text, true);
 $$;
-grant execute on function pg_temp.v(text), pg_temp.login(text) to anon, authenticated;
+grant execute on function pg_temp.v(text), pg_temp.login(text, boolean) to anon, authenticated;
 
 insert into public.provider_applications (user_id, kind, display_name, city_id, location_types, invoicing_service)
 values ('00000000-0000-0000-0000-0000000005a1', 'individual', 'Testi Viisi',
@@ -59,16 +60,52 @@ select is(
   0, 'hakija voi poistaa oman luonnoksensa orvon tiedoston'
 );
 
--- Lähetetyn hakemuksen tiedostot säilyvät, vaikka kirjausta ei olisi.
+-- Lataukset: vain oma luonnos, ei anonyymiä istuntoa, ei keksittyä hakemusta.
+set local role authenticated;
+select pg_temp.login('00000000-0000-0000-0000-0000000005a1');
+select lives_ok(
+  format($q$insert into storage.objects (bucket_id, name) values ('application-documents', %L)$q$,
+         pg_temp.v('own') || 'uusi.jpg'),
+  'hakija voi ladata oman luonnoksensa kansioon'
+);
+select throws_ok(
+  format($q$insert into storage.objects (bucket_id, name) values ('application-documents', %L)$q$,
+         '00000000-0000-0000-0000-0000000005a1/00000000-0000-0000-0000-00000000dead/x.jpg'),
+  '42501', null, 'olemattomaan hakemukseen ei voi ladata'
+);
+select throws_ok(
+  format($q$insert into storage.objects (bucket_id, name) values ('application-documents', %L)$q$,
+         '00000000-0000-0000-0000-0000000005a1/x/x.jpg'),
+  '42501', null, 'kansio ilman hakemustunnusta ei kelpaa'
+);
+select pg_temp.login('00000000-0000-0000-0000-0000000005a1', true);
+select throws_ok(
+  format($q$insert into storage.objects (bucket_id, name) values ('application-documents', %L)$q$,
+         pg_temp.v('own') || 'anon.jpg'),
+  '42501', null, 'anonyymi istunto ei voi ladata'
+);
+reset role;
+
+-- Lähetetty hakemus: lataus estetty, mutta kirjaamattoman tiedoston saa poistaa.
 insert into storage.objects (bucket_id, name) values ('application-documents', pg_temp.v('own') || 'myohassa.jpg');
 update public.provider_applications set status = 'submitted', submitted_at = now() where id = pg_temp.v('app')::uuid;
 set local role authenticated;
 select pg_temp.login('00000000-0000-0000-0000-0000000005a1');
+select throws_ok(
+  format($q$insert into storage.objects (bucket_id, name) values ('application-documents', %L)$q$,
+         pg_temp.v('own') || 'lahetetty.jpg'),
+  '42501', null, 'lähetettyyn hakemukseen ei voi ladata'
+);
 delete from storage.objects where bucket_id = 'application-documents' and name = pg_temp.v('own') || 'myohassa.jpg';
+delete from storage.objects where bucket_id = 'application-documents' and name = pg_temp.v('own') || 'kirjattu.jpg';
 reset role;
 select is(
   (select count(*)::int from storage.objects where name = pg_temp.v('own') || 'myohassa.jpg'),
-  1, 'lähetetyn hakemuksen tiedostoa ei voi poistaa'
+  0, 'lähetetyn hakemuksen kirjaamattoman tiedoston voi poistaa'
+);
+select is(
+  (select count(*)::int from storage.objects where name = pg_temp.v('own') || 'kirjattu.jpg'),
+  1, 'lähetetyn hakemuksen liite säilyy'
 );
 
 select * from finish();

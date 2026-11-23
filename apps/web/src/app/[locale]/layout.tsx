@@ -27,7 +27,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
-  title: { default: "Vaihdarenkaat", template: "%s | Vaihdarenkaat" },
+  title: { default: "Pikkutyö", template: "%s | Pikkutyö" },
 };
 
 export default async function LocaleLayout({

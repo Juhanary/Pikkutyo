@@ -1,6 +1,6 @@
 {
   "common": {
-    "brand": "Vaihdarenkaat",
+    "brand": "Pikkutyö",
     "book": "Book",
     "search": "Search",
     "atHome": "At your home",
@@ -32,7 +32,7 @@
     "breadcrumb": "Breadcrumb"
   },
   "home": {
-    "metaTitle": "Tyre change near you – free slots instantly | Vaihdarenkaat",
+    "metaTitle": "Tyre change near you – free slots instantly | Pikkutyö",
     "metaDescription": "Compare tyre change prices and book a free slot at a workshop or at your home. You pay only after you approve the work.",
     "title": "Tyre change near you",
     "lead": "See free times instantly. You pay only after you approve the work.",
@@ -118,7 +118,7 @@
     "b3": "For workshops and independent providers with their own tools and liability insurance.",
     "cta": "Start your application",
     "readMore": "Read more about becoming a provider",
-    "benefitsTitle": "Why Vaihdarenkaat",
+    "benefitsTitle": "Why Pikkutyö",
     "stepsTitle": "How to apply",
     "s1": "Sign in with your email and fill in the basics.",
     "s2": "Upload a photo of your tools and proof of liability insurance.",

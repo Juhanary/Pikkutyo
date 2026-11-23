@@ -1,4 +1,4 @@
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import type { I18nText } from "./types";
 
 export const TIME_ZONE = "Europe/Helsinki";

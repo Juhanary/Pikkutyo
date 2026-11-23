@@ -4,7 +4,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { createAdminClient } from "@supabase/server/core";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Locale } from "@vaihdarenkaat/i18n";
+import type { Locale } from "@pikkutyo/i18n";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getPathname } from "@/i18n/navigation";
