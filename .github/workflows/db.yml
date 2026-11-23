@@ -9,6 +9,9 @@ on:
     branches: [main]
     paths:
       - "supabase/**"
+      - ".github/workflows/db.yml"
+  # Käsin Actions-välilehdeltä (esim. uuden repon ensimmäinen ajo).
+  workflow_dispatch:
 
 jobs:
   test:
