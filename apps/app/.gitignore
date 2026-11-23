@@ -1,0 +1,32 @@
+# Dart ja Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+migrate_working_dir/
+**/doc/api/
+
+# Symbolit ja obfuskointikartat (flutter build --split-debug-info)
+app.*.symbols
+app.*.map.json
+
+# Alustojen paikalliset tuotokset
+/android/app/debug
+/android/app/profile
+/android/app/release
+ios/Flutter/.last_build_id
+.swiftpm/
+
+# Generoitu: käännökset (gen-l10n, ks. l10n.yaml)
+lib/l10n/generated/
+
+# Paikalliset asetukset: sisältää julkaistavan avaimen
+dart_defines.json
+
+# Editorit
+*.iml
+*.ipr
+*.iws
+.idea/

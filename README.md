@@ -1,15 +1,74 @@
-# Vaihdarenkaat
+# Pikkutyö
 
-Renkaanvaihdon markkinapaikka (työnimi). Pilottikaupunki Kuopio.
-Alkuperäinen suunnitelma (vaihe 1): [Vaihdarenkaat – tekninen suunnitelma, vaihe 1](https://claude.ai/artifact/KnZ3EaAQv1VAqCUDgz7zuw).
-Sen jälkeen tehdyt päätökset ovat kansiossa `docs/adr/`.
+Pikkutöiden markkinapaikka (ent. Kausityö ja Vaihdarenkaat; ilman ääkkösiä `pikkutyo`).
+Asiakas löytää tekijän pikkutyöhön ja maksaa sen turvallisesti sovelluksessa. Palvelu on
+välittäjä: asiakas valitsee tekijän, tekijä päättää hinnan, ja palvelu hoitaa haun, maksun ja
+luottamuksen. Ensimmäiset työt ovat lumityö ja renkaanvaihto, pilottikaupunki Kuopio.
+Myöhemmin mukaan tulevat muut pikkutyöt, joita saa tehdä ilman lupia.
+
+Tekijät voivat olla yrityksiä, toiminimiä, kevytyrittäjiä tai yksityishenkilöitä
+(`docs/adr/0005-alustan-rooli-ja-kayttajaryhmat.md`). Yksityishenkilö tekee työn
+toimeksiantona ilman Y-tunnusta (`docs/adr/0006-yksityishenkilo-tekijana.md`). Palvelu pysyy
+markkinapaikkana eikä organisoi työtä (alustatyölaki, `docs/adr/0007-alustatyolaki-markkinapaikkamalli.md`).
+
+Suunnitelma: [Pikkutyö – suunnitelma](https://claude.ai/artifact/5ySwBGieRGePNqJqmpC8Xt).
+Jos tämä tiedosto ja suunnitelma ovat ristiriidassa, suunnitelma on voimassa.
+Tekniset päätökset ovat kansiossa `docs/adr/`.
+
+## Tila (23.11.2026)
+
+**Toimii ja on testattu**
+
+- Sivuston yksikkötestit (19) ja tyyppitarkistus menevät läpi.
+- Maksumoduulien testit (9) menevät läpi (`node --experimental-strip-types --test supabase/functions/_shared/*.test.ts`).
+- Flutter-sovelluksen runko: `flutter analyze` ilman huomioita ja 12 testiä läpi
+  (`apps/app`, alustakansiot android/ios/web tehty).
+- Sivusto: etusivu, haku, kaupunkisivut suodattimineen, tarjoajan profiilisivu,
+  "Tarjoajaksi"-sivu, tarjoajahakemus liitteineen ja kirjautuminen sähköpostilinkillä.
+- Tietokanta: varaukset ja vapaat ajat, työn kulku ja kuittaus, Stripe Connect -maksut
+  (oletuksena testimaksut), reklamaatiot, ilmoitusjono, tarjoajahakemukset, DAC7-raportti
+  ja ajastetut työt. pgTAP-testit ajetaan komennolla `npm run db:test` dev-kantaa vasten.
+
+**Seuraavat askeleet järjestyksessä** (suunnitelman kohta "Rakennus")
+
+1. Kategoriat (lumityö, renkaanvaihto) ja ilmoitus, johon tekijä lisää hinnan sekä useita
+   päiviä ja aikoja, joista asiakkaat varaavat.
+2. Flutter-sovellus (`apps/app`, iOS, Android ja web, ADR 0001): kirjautuminen, haku, ilmoitus ja
+   varaus. Runko, alustakansiot sekä kieli- ja ulkoasuvalinta on tehty
+   (`apps/app/README.md`); kategoriat, tekijän näkymät ja maksuvirta (askel 7) tehdään siihen.
+3. Tarjoajahakemuksen hyväksyntä poistetaan, jotta tekijä voi tarjota työtä heti. Ikäraja
+   18 vuotta tarkistetaan tunnistautumisessa.
+4. Tekijätyypit (`company | sole_trader | private_person`) ja ansioseuranta: 1 500 €
+   samalta asiakkaalta, tekijän 3 000 €:n vuosiraja, 10 työtä kuukaudessa, 2 aktiivista
+   ilmoitusta, 80 %:n varoitus ja ohjaus yritykseksi (ADR 0006).
+5. Ansaintamalli kantaan: palvelumaksu 10 % (väh. 2,99 €), palkkio 5 % tai 0 % (ADR 0003).
+6. Työn kuittaus kuvalla sekä riitamalli: 48 tunnin ilmoitusaika ja 7 päivän sopimisaika
+   (koodissa nyt 24 h, ADR 0004).
+7. Maksuvirta: maksutapa (kortti, Apple Pay tai Google Pay) pakollinen ennen tilausta,
+   varaus automaattisesti 24 tuntia ennen työtä (alle 24 tunnin tilauksissa heti), 6 tunnin
+   aika maksutavan vaihtoon, veloitus 48 tuntia kuittauksen jälkeen, Stripen automaattiset
+   tilitykset ja 24 tunnin peruutusmaksu yksityishenkilötekijöille. Peruutusehto tallennetaan
+   tilaukseen arvoina (tunnit ja prosentti).
+8. Puhelinnumero ja tarkka osoite piilotetaan, kunnes tekijä hyväksyy tilauksen.
+9. Asiakkaalle ohje ilmoitusvelvollisuudesta ja tekijälle vuosikooste. Henkilötunnusta ei
+   näytetä asiakkaalle.
+10. DAC7-tiedot tekijöiltä.
+11. Käyttöehdot, säännöt, tietosuojaseloste, evästeet, turvalliset kaupat ja asiakastuki
+    sivustolle. Luonnokset: [Pikkutyö – käyttöehdot, tietosuoja ja tuki](https://claude.ai/artifact/FoFPwnuectnGwRyDB6F6e6).
+    Juristi tarkistaa ennen julkaisua.
+12. Sähköpostilinkkikirjautuminen vaihdetaan Vipps MobilePay Login Advanced -kirjautumiseen.
+13. ADR 0007:n säännöt: neutraali oletusjärjestys, arvosanat eivät vaikuta automaattisesti
+    ja rajojen estoon voi pyytää ihmisen tarkistuksen.
+
+Myöhemmin: `/admin` ja ilmoitusten ja sivuston revalidoinnin
+työntekijät (niiden tapahtumat odottavat jonossa).
 
 ## Rakenne
 
 ```
 apps/web/            Next.js: julkinen sivusto, kaupunkisivut, haku, tarjoajasivut
                      (/admin tulossa)
-apps/app/            Flutter: asiakas + tarjoaja, iOS/Android/web (tulossa, ei vielä aloitettu)
+apps/app/            Flutter: asiakas + tarjoaja, iOS, Android ja web (runko ja alustat tehty)
 packages/db-types/   Supabasesta generoidut TypeScript-tyypit
 packages/i18n/       kielet, käännetyt URL-polut, käännökset (fi, sv, en)
 supabase/            migraatiot, siemendata, pgTAP-testit, Edge Functions
@@ -23,7 +82,7 @@ hintoja tai aikoja itse. Maksupalvelun kutsut tehdään Edge Functionsissa.
 ## Vaatimukset
 
 - Node 22+ ja npm
-- Flutter (vain `apps/app`, kun se aloitetaan)
+- Flutter (vain `apps/app`, ks. `apps/app/README.md`)
 - Supabase-projektit alueella eu-central-1 (dev ja prod)
 
 Paikallinen kehitys ei vaadi Dockeria: se tehdään pilven dev-projektia vasten.

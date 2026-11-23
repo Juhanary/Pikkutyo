@@ -1,0 +1,47 @@
+{
+  "@@locale": "fi",
+  "appTitle": "Pikkutyö",
+  "navSearch": "Haku",
+  "navBookings": "Varaukset",
+  "navAccount": "Tili",
+  "searchTitle": "Hae tekijä",
+  "searchDate": "Päivä",
+  "searchEmpty": "Tälle päivälle ei löytynyt tekijöitä.",
+  "searchError": "Haku epäonnistui. Yritä uudelleen.",
+  "retry": "Yritä uudelleen",
+  "kindCompany": "Yritys",
+  "kindPrivate": "Yksityishenkilö",
+  "freeSlots": "{count, plural, =0{Ei vapaita aikoja} =1{1 vapaa aika} other{{count} vapaata aikaa}}",
+  "@freeSlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "rating": "{rating} / 5 ({count})",
+  "@rating": {
+    "placeholders": {
+      "rating": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noRating": "Ei vielä arvioita",
+  "signInTitle": "Kirjaudu",
+  "signInVipps": "Kirjaudu MobilePaylla",
+  "signInComingSoon": "Kirjautuminen Vipps MobilePay Loginilla tulee pian.",
+  "bookingsEmpty": "Sinulla ei ole vielä varauksia.",
+  "bookingsSignIn": "Kirjaudu nähdäksesi varauksesi.",
+  "bookTitle": "Varaus",
+  "bookComingSoon": "Varaus ja maksu tulevat sovellukseen seuraavissa vaiheissa.",
+  "accountTitle": "Tili",
+  "settingsLanguage": "Kieli",
+  "settingsTheme": "Ulkoasu",
+  "optionSystem": "Laitteen mukaan",
+  "themeLight": "Vaalea",
+  "themeDark": "Tumma"
+}
